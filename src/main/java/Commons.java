@@ -11,8 +11,7 @@ public class Commons {
     }
 
     public static void merge(Comparable[] values1, Comparable[] values2, int low, int middle, int high) {
-        assert Commons.isSorted(values1, low, middle);
-        assert Commons.isSorted(values1, middle + 1, high);
+        isSorted(values1, low, middle, high);
         if (high + 1 - low >= 0) System.arraycopy(values2, low, values1, low, high + 1 - low);
         int i = low;
         int j = middle + 1;
@@ -25,8 +24,7 @@ public class Commons {
     }
 
     public static void mergeTwo(Comparable[] values1, Comparable[] values2, int low, int middle, int high) {
-        assert Commons.isSorted(values1, low, middle);
-        assert Commons.isSorted(values1, middle + 1, high);
+        isSorted(values1, low, middle, high);
         if (high + 1 - low >= 0) System.arraycopy(values1, low, values2, low, high + 1 - low);
         int i = low;
         int j = middle + 1;
@@ -36,5 +34,10 @@ public class Commons {
             else if (Commons.less(values2[j], values2[i])) values1[x] = values2[j++];
             else values1[x] = values2[i++];
         }
+    }
+
+    private static void isSorted(Comparable[] values1, int low, int middle, int high) {
+        assert Commons.isSorted(values1, low, middle);
+        assert Commons.isSorted(values1, middle + 1, high);
     }
 }
