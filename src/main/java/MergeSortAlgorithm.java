@@ -1,22 +1,20 @@
+import java.util.Arrays;
+
 @SuppressWarnings("unchecked")
 public class MergeSortAlgorithm {
 
-    private MergeSortAlgorithm() { }
-
-    public static void sort(Comparable[] values) {
+    public Comparable[] sort(Comparable[] values) {
         Comparable[] valuesTwo = new Comparable[values.length];
         sort(values, valuesTwo, 0, values.length - 1);
         assert isSorted(values);
+        return values;
     }
 
-    private static void merge(Comparable[] list1, Comparable[] list2, int low, int middle, int high) {
+    private void merge(Comparable[] list1, Comparable[] list2, int low, int middle, int high) {
         assert isSorted(list1, low, middle);
         assert isSorted(list2, middle + 1, high);
 
-        for (int i = low; i <= high; i++) {
-            list2[i] = list1[i];
-        }
-
+        if (high + 1 - low >= 0) System.arraycopy(list1, low, list2, low, high + 1 - low);
         int i = low;
         int j = middle + 1;
         for(int x = low; x <= high; x++) {
@@ -27,7 +25,7 @@ public class MergeSortAlgorithm {
         }
         assert isSorted(list1, low, high);
     }
-    private static void sort(Comparable[] list1, Comparable[] list2, int low, int high) {
+    private void sort(Comparable[] list1, Comparable[] list2, int low, int high) {
         if (high <= low) return;
         int mid = low + (high - low) / 2;
         sort(list1, list2, low, mid);
@@ -47,28 +45,5 @@ public class MergeSortAlgorithm {
         for (int i = low + 1; i <= high; i++)
             if (less(values[i], values[i - 1])) return false;
         return true;
-    }
-
-    private static void show(Comparable[] values) {
-        StringBuilder s = new StringBuilder();
-        int count = 0;
-        for (Comparable value : values) {
-            s.append(value);
-            count++;
-            if(count != values.length) s.append(", ");
-        }
-
-        System.out.println(s);
-    }
-    public static void main(String... args) {
-        String[] a = new String[] { "a", "b", "c" , "b", "d", };
-        show(a);
-        MergeSortAlgorithm.sort(a);
-        show(a);
-        Comparable[] nums = new Comparable[] {1, 2, 1, 5, 4, 9, -1, 3, 88};
-        show(nums);
-        MergeSortAlgorithm.sort(nums);
-        show(nums);
-
     }
 }
