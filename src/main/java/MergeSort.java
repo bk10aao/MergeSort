@@ -1,5 +1,4 @@
-@SuppressWarnings("unchecked")
-public class MergeSortAlgorithm {
+public class MergeSort {
 
     public static Comparable[] aux;
 
