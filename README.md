@@ -1,3 +1,3 @@
 # MergeSort
 
-Implementation of a merge sorting algorithm.
+Implementation of a Merge Sort Algorithm.
